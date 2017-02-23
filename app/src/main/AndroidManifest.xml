@@ -4,11 +4,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".module.MainActivity">
+        android:theme="@style/ActivityTurnStyle">
+        <activity
+            android:name=".module.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTurnStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
