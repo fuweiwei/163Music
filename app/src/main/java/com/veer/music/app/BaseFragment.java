@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * 基类
+ * 基类 所有fragment都必须继承
  * Created by Veer
  * date 17/2/23.
  */
