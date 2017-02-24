@@ -15,34 +15,40 @@
         android:layout_width="160dp"
         android:layout_height="match_parent">
         <LinearLayout
+            android:id="@+id/lin_discover"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_height="match_parent">
-            <Button
+            <ImageView
+                android:id="@+id/iv_discover"
                 android:layout_width="@dimen/title_img_size"
                 android:layout_height="@dimen/title_img_size"
-                android:background="@drawable/actionbar_discover"/>
+                android:src="@drawable/actionbar_discover"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/lin_music"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_height="match_parent">
-            <Button
+            <ImageView
+                android:id="@+id/iv_music"
                 android:layout_width="@dimen/title_img_size"
                 android:layout_height="@dimen/title_img_size"
-                android:background="@drawable/actionbar_music"/>
+                android:src="@drawable/actionbar_music"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/lin_friends"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_height="match_parent">
-            <Button
+            <ImageView
+                android:id="@+id/iv_friends"
                 android:layout_width="@dimen/title_img_size"
                 android:layout_height="@dimen/title_img_size"
-                android:background="@drawable/actionbar_friends"/>
+                android:src="@drawable/actionbar_friends"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

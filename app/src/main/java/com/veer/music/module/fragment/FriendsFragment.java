@@ -1,27 +1,25 @@
-package com.veer.music.app;
+package com.veer.music.module.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.veer.music.R;
+import com.veer.music.app.BaseFragment;
+
 /**
- * 基类
+ * 描述
  * Created by Veer
- * date 17/2/23.
+ * date 17/2/24.
  */
 
-public class BaseFragment extends Fragment {
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
+public class FriendsFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_friends,container,false);
+        return view;
     }
 }
