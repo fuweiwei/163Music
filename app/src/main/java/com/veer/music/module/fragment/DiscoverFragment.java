@@ -10,7 +10,7 @@ import com.veer.music.R;
 import com.veer.music.app.BaseFragment;
 
 /**
- * 描述
+ * 发现界面
  * Created by Veer
  * date 17/2/24.
  */
