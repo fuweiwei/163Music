@@ -4,4 +4,8 @@
     <dimen name="vertical_margin">10dp</dimen>
     <dimen name="title_height">50dp</dimen>
     <dimen name="title_img_size">35dp</dimen>
+
+    <dimen name="text_large">18sp</dimen>
+    <dimen name="text_middle">16sp</dimen>
+    <dimen name="text_small">12sp</dimen>
 </resources>

@@ -1,6 +1,7 @@
 package com.veer.music.module;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import com.veer.music.R;
 import com.veer.music.app.BaseActivity;
 import com.veer.music.support.adapter.MainTabAdapter;
+import com.veer.music.utils.StatusBarUtil;
 
 /**
  *
@@ -109,5 +111,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 break;
         }
 
+    }
+    @Override
+    protected void setStatusBar() {
+        StatusBarUtil.setColorForDrawerLayout(this, (DrawerLayout) findViewById(R.id.drawerLayout),
+                ContextCompat.getColor(mThis,R.color.colorPrimary), 33);
     }
 }

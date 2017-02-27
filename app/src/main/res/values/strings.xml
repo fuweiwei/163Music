@@ -2,4 +2,20 @@
     <string name="app_name">163Music</string>
     <string name="drawer_open">打开</string>
     <string name="drawer_close">关闭</string>
+
+
+    <string name="slide_menu_mymsg">我的消息</string>
+    <string name="slide_menu_member">会员中心</string>
+    <string name="slide_menu_shopping">商城</string>
+    <string name="slide_menu_cloud">在线听歌</string>
+    <string name="slide_menu_listen">听歌识曲</string>
+    <string name="slide_menu_skin">主题换肤</string>
+    <string name="slide_menu_night">夜间模式</string>
+    <string name="slide_menu_timing">定时停止播放</string>
+    <string name="slide_menu_zxing">扫一扫</string>
+    <string name="slide_menu_clock">音乐闹钟</string>
+    <string name="slide_menu_setting">设置</string>
+    <string name="slide_menu_exit">退出应用</string>
+
+
 </resources>
