@@ -14,8 +14,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <RelativeLayout
+            android:id="@+id/menu_header"
             android:layout_width="match_parent"
-            android:background="@drawable/slide_header_bg"
+            android:background="@color/colorPrimary"
             android:layout_height="180dp">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/slide_menu_user"
@@ -93,6 +94,7 @@
                 android:text="@string/slide_menu_listen"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/menu_skin"
             style="@style/slide_menu_sec_rl">
             <ImageView
                 android:id="@+id/topmenu_icn_6"
@@ -123,6 +125,7 @@
         android:background="@color/white"
         android:layout_height="50dp">
         <TextView
+            android:id="@+id/menu_setting"
             android:layout_width="match_parent"
             android:text="@string/slide_menu_setting"
             android:gravity="center"

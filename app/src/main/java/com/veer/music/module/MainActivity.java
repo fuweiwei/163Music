@@ -1,20 +1,31 @@
 package com.veer.music.module;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.veer.music.R;
 import com.veer.music.app.BaseActivity;
+import com.veer.music.config.Config;
+import com.veer.music.module.activity.ChangeThemeActivity;
+import com.veer.music.module.activity.SettingActivity;
 import com.veer.music.support.adapter.MainTabAdapter;
+import com.veer.music.support.eventbus.ThemeChangeEvent;
+import com.veer.music.utils.PreferenceUtils;
 import com.veer.music.utils.StatusBarUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  *
@@ -27,16 +38,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private ImageView imageView_discover,imageView_music,imageView_friends;
     private ViewPager viewPager;
     private MainTabAdapter mAdapter;
+    //menu
+    private RelativeLayout menu_skin,menu_header;
+    private TextView textView_setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+        EventBus.getDefault().register(mThis);
 
     }
 
     public void initViews() {
+        menu_skin = (RelativeLayout) findViewById(R.id.menu_skin);
+        menu_header = (RelativeLayout) findViewById(R.id.menu_header);
+        textView_setting = (TextView) findViewById(R.id.menu_setting);
+
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         linearLayout_discover = (LinearLayout) findViewById(R.id.lin_discover);
         imageView_menu = (ImageView) findViewById(R.id.iv_menu);
@@ -52,6 +71,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         linearLayout_friends.setOnClickListener(this);
         linearLayout_music.setOnClickListener(this);
         imageView_menu.setOnClickListener(this);
+        menu_skin.setOnClickListener(this);
+        textView_setting.setOnClickListener(this);
         mAdapter = new MainTabAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mAdapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -71,6 +92,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             }
         });
         setTabSelected(0);
+        int color = PreferenceUtils.getInstance(mThis).getIntParam(Config.SP_BAR_COLOR,
+                ContextCompat.getColor(mThis,R.color.colorPrimary));
+        toolbar.setBackgroundColor(color);
+        menu_header.setBackgroundColor(color);
     }
 
 
@@ -91,9 +116,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 break;
         }
     }
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEventMainThread(ThemeChangeEvent event) {
+        int color = event.getColor();
+        StatusBarUtil.setColorForDrawerLayout(this, drawerLayout,
+               color, Config.BAR_TRANSPARENT);
+        toolbar.setBackgroundColor(color);
+        menu_header.setBackgroundColor(color);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(mThis);
+    }
+
     @Override
     public void onClick(View view) {
         int id = view.getId();
+        Intent intent = null;
         switch (id){
             case R.id.lin_discover:
                 setTabSelected(0);
@@ -107,14 +147,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             case R.id.iv_menu:
                 drawerLayout.openDrawer(Gravity.LEFT);
                 break;
+            case R.id.menu_setting:
+                intent = new Intent(mThis, SettingActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.menu_skin:
+                intent = new Intent(mThis, ChangeThemeActivity.class);
+                startActivity(intent);
+//                int mColor = Color.GRAY;
+//                Random random = new Random();
+//                mColor = 0xff000000 | random.nextInt(0xffffff);
+//                toolbar.setBackgroundColor(mColor);
+//                StatusBarUtil.setColorForDrawerLayout(this, drawerLayout, mColor, 33);
+//                menu_header.setBackgroundColor(mColor);
+                break;
             default:
                 break;
         }
 
     }
+
     @Override
     protected void setStatusBar() {
+        int color = PreferenceUtils.getInstance(mThis).getIntParam(Config.SP_BAR_COLOR,
+                ContextCompat.getColor(mThis,R.color.colorPrimary));
         StatusBarUtil.setColorForDrawerLayout(this, (DrawerLayout) findViewById(R.id.drawerLayout),
-                ContextCompat.getColor(mThis,R.color.colorPrimary), 33);
+                color, Config.BAR_TRANSPARENT);
     }
+
+
 }
