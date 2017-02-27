@@ -5,6 +5,13 @@
     android:background="@color/theme_red"
     >
     <ImageView
+        android:id="@+id/iv_menu"
+        android:layout_width="@dimen/title_img_size"
+        android:layout_height="@dimen/title_img_size"
+        android:layout_marginLeft="-10dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/actionbar_menu"/>
+    <ImageView
         android:layout_width="@dimen/title_img_size"
         android:layout_height="@dimen/title_img_size"
         android:layout_centerVertical="true"
@@ -13,6 +20,7 @@
         android:src="@drawable/actionbar_search"/>
     <LinearLayout
         android:layout_width="160dp"
+        android:layout_centerInParent="true"
         android:layout_height="match_parent">
         <LinearLayout
             android:id="@+id/lin_discover"

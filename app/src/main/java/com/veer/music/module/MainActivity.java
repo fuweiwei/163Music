@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,7 +20,7 @@ import com.veer.music.support.adapter.MainTabAdapter;
 public class MainActivity extends BaseActivity implements View.OnClickListener{
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
-    private ActionBarDrawerToggle mDrawerToggle;
+    private ImageView imageView_menu;
     private LinearLayout linearLayout_discover,linearLayout_music,linearLayout_friends;
     private ImageView imageView_discover,imageView_music,imageView_friends;
     private ViewPager viewPager;
@@ -36,6 +37,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     public void initViews() {
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         linearLayout_discover = (LinearLayout) findViewById(R.id.lin_discover);
+        imageView_menu = (ImageView) findViewById(R.id.iv_menu);
         linearLayout_music = (LinearLayout) findViewById(R.id.lin_music);
         linearLayout_friends = (LinearLayout) findViewById(R.id.lin_friends);
         imageView_discover = (ImageView) findViewById(R.id.iv_discover);
@@ -44,13 +46,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mDrawerToggle = new ActionBarDrawerToggle(mThis, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
-        mDrawerToggle.syncState();
-        drawerLayout.addDrawerListener(mDrawerToggle);
         linearLayout_discover.setOnClickListener(this);
         linearLayout_friends.setOnClickListener(this);
         linearLayout_music.setOnClickListener(this);
+        imageView_menu.setOnClickListener(this);
         mAdapter = new MainTabAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mAdapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -102,6 +101,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 break;
             case R.id.lin_friends:
                 setTabSelected(2);
+                break;
+            case R.id.iv_menu:
+                drawerLayout.openDrawer(Gravity.LEFT);
                 break;
             default:
                 break;
