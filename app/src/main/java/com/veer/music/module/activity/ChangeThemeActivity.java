@@ -28,25 +28,18 @@ import java.util.Random;
 public class ChangeThemeActivity extends BaseActivity {
     private Button mBtnChangeColor;
     private int mColor = Color.RED;
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_theme);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mBtnChangeColor = (Button) findViewById(R.id.btn_change);
-        setSupportActionBar(mToolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-        mToolbar.setBackgroundColor(mColor);
         mBtnChangeColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Random random = new Random();
                 mColor = 0xff000000 | random.nextInt(0xffffff);
-                mToolbar.setBackgroundColor(mColor);
+                toolbar.setBackgroundColor(mColor);
                 PreferenceUtils.getInstance(mThis).saveParam(Config.SP_BAR_COLOR,mColor);
                 StatusBarUtil.setColorForSwipeBack(ChangeThemeActivity.this, mColor, Config.BAR_TRANSPARENT);
                 EventBus.getDefault().post(new ThemeChangeEvent(mColor));
@@ -55,7 +48,9 @@ public class ChangeThemeActivity extends BaseActivity {
     }
 
     @Override
-    protected void setStatusBar() {
-        StatusBarUtil.setColorForSwipeBack(ChangeThemeActivity.this, mColor, Config.BAR_TRANSPARENT);
+    protected void initToolBar() {
+        super.initToolBar(toolbar);
+        toolbar.setTitle("更换主题");
     }
+
 }

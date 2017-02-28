@@ -18,19 +18,20 @@ import com.veer.music.utils.StatusBarUtil;
  */
 
 public class SettingActivity extends BaseActivity {
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("设置");
+
     }
 
     @Override
-    protected void setStatusBar() {
-        StatusBarUtil.setColorForSwipeBack(SettingActivity.this, Color.RED, Config.BAR_TRANSPARENT);
+    protected void initToolBar() {
+        super.initToolBar(toolbar);
+        toolbar.setTitle("设置");
+
     }
+
 
 }

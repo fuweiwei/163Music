@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,7 +31,6 @@ import org.greenrobot.eventbus.ThreadMode;
  */
 public class MainActivity extends BaseActivity implements View.OnClickListener{
     private DrawerLayout drawerLayout;
-    private Toolbar toolbar;
     private ImageView imageView_menu;
     private LinearLayout linearLayout_discover,linearLayout_music,linearLayout_friends;
     private ImageView imageView_discover,imageView_music,imageView_friends;
@@ -64,9 +62,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         imageView_discover = (ImageView) findViewById(R.id.iv_discover);
         imageView_music = (ImageView) findViewById(R.id.iv_music);
         imageView_friends = (ImageView) findViewById(R.id.iv_friends);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        setSupportActionBar(toolbar);
         linearLayout_discover.setOnClickListener(this);
         linearLayout_friends.setOnClickListener(this);
         linearLayout_music.setOnClickListener(this);
@@ -94,7 +90,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         setTabSelected(0);
         int color = PreferenceUtils.getInstance(mThis).getIntParam(Config.SP_BAR_COLOR,
                 ContextCompat.getColor(mThis,R.color.colorPrimary));
-        toolbar.setBackgroundColor(color);
         menu_header.setBackgroundColor(color);
     }
 
@@ -174,6 +169,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 ContextCompat.getColor(mThis,R.color.colorPrimary));
         StatusBarUtil.setColorForDrawerLayout(this, (DrawerLayout) findViewById(R.id.drawerLayout),
                 color, Config.BAR_TRANSPARENT);
+    }
+
+    @Override
+    protected void initToolBar() {
+        setSupportActionBar(toolbar);
+        int color = PreferenceUtils.getInstance(mThis).getIntParam(Config.SP_BAR_COLOR,
+                ContextCompat.getColor(mThis,R.color.colorPrimary));
+        toolbar.setBackgroundColor(color);
     }
 
 
