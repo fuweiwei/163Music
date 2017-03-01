@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="@color/gray_bg"
     >
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_centerInParent="true"
-       android:text="friends"
-       android:textColor="@color/theme_red"
-       android:layout_height="wrap_content" />
-</RelativeLayout>
+   <android.support.design.widget.TabLayout
+       android:id="@+id/tabLayout"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+   </android.support.design.widget.TabLayout>
+   <com.veer.music.widget.ChildViewPager
+       android:id="@+id/viewPager"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"></com.veer.music.widget.ChildViewPager>
+</LinearLayout>
