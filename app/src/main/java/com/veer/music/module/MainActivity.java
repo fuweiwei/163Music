@@ -2,6 +2,7 @@ package com.veer.music.module;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -17,7 +18,10 @@ import com.veer.music.app.BaseActivity;
 import com.veer.music.config.Config;
 import com.veer.music.module.activity.ChangeThemeActivity;
 import com.veer.music.module.activity.SettingActivity;
-import com.veer.music.support.adapter.MainTabAdapter;
+import com.veer.music.module.fragment.DiscoverFragment;
+import com.veer.music.module.fragment.FriendsFragment;
+import com.veer.music.module.fragment.MusicFragment;
+import com.veer.music.support.adapter.TabFragmentAdapter;
 import com.veer.music.support.eventbus.ThemeChangeEvent;
 import com.veer.music.utils.PreferenceUtils;
 import com.veer.music.utils.StatusBarUtil;
@@ -25,6 +29,9 @@ import com.veer.music.utils.StatusBarUtil;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -35,7 +42,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private LinearLayout linearLayout_discover,linearLayout_music,linearLayout_friends;
     private ImageView imageView_discover,imageView_music,imageView_friends;
     private ViewPager viewPager;
-    private MainTabAdapter mAdapter;
+    private TabFragmentAdapter mAdapter;
+    private DiscoverFragment mDiscoverFragment;
+    private FriendsFragment mFriendsFragment;
+    private MusicFragment mMusicFragment;
+    private List<Fragment> mFragments;
     //menu
     private RelativeLayout menu_skin,menu_header;
     private TextView textView_setting;
@@ -69,7 +80,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         imageView_menu.setOnClickListener(this);
         menu_skin.setOnClickListener(this);
         textView_setting.setOnClickListener(this);
-        mAdapter = new MainTabAdapter(getSupportFragmentManager());
+        mFragments = new ArrayList<>();
+        mDiscoverFragment = new DiscoverFragment();
+        mFriendsFragment = new FriendsFragment();
+        mMusicFragment = new MusicFragment();
+        mFragments.add(mDiscoverFragment);
+        mFragments.add(mMusicFragment);
+        mFragments.add(mFriendsFragment);
+
+        mAdapter = new TabFragmentAdapter(getSupportFragmentManager(),mFragments,new ArrayList<String>());
         viewPager.setAdapter(mAdapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -118,6 +137,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                color, Config.BAR_TRANSPARENT);
         toolbar.setBackgroundColor(color);
         menu_header.setBackgroundColor(color);
+        if(mDiscoverFragment!=null)mDiscoverFragment.updateTheme(color);
+        if(mFriendsFragment!=null)mFriendsFragment.updateTheme(color);
     }
     @Override
     protected void onDestroy() {
