@@ -8,5 +8,4 @@ Imitate NetEase cloud music Demo
 4、下拉刷新 SwipeRefreshLayout
 5、主题更换
 6、状态栏颜色设置(沉浸式状态栏)
-7、EventBus
-
+7、EventBus的使用
