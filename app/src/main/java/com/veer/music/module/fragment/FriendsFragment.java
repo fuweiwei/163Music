@@ -79,6 +79,7 @@ public class FriendsFragment extends BaseFragment {
         if(tabLayout==null)return;
         tabLayout.setTabTextColors(ContextCompat.getColor(getActivity(),R.color.black),color);
         tabLayout.setSelectedTabIndicatorColor(color);
+        mTrendsFragment.updateTheme(color);
 
     }
 }
