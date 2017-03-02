@@ -1,12 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_centerInParent="true"
-       android:text="music"
-       android:textColor="@color/theme_red"
-       android:layout_height="wrap_content" />
-</RelativeLayout>
+    android:background="@color/gray_bg"
+    android:layout_height="match_parent" >
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:orientation="vertical"
+       android:layout_height="match_parent">
+      <RelativeLayout
+          style="@style/slide_menu_sec_rl">
+         <TextView
+             android:layout_marginLeft="30dp"
+             style="@style/slide_menu_text"
+             android:text="本地音乐"/>
+         <View
+             android:layout_marginLeft="30dp"
+             android:layout_width="match_parent"
+             android:layout_alignParentBottom="true"
+             android:layout_height="0.1dp"
+             android:background="@color/gray_divi"/>
+      </RelativeLayout>
+      <RelativeLayout
+
+          style="@style/slide_menu_sec_rl">
+         <TextView
+             android:layout_marginLeft="30dp"
+             style="@style/slide_menu_text"
+             android:text="最近播放"/>
+         <View
+             android:layout_marginLeft="30dp"
+             android:layout_width="match_parent"
+             android:layout_alignParentBottom="true"
+             android:layout_height="0.1dp"
+             android:background="@color/gray_divi"/>
+      </RelativeLayout>
+      <RelativeLayout
+
+          style="@style/slide_menu_sec_rl">
+         <TextView
+             android:layout_marginLeft="30dp"
+             style="@style/slide_menu_text"
+             android:text="下载管理"/>
+         <View
+             android:layout_marginLeft="30dp"
+             android:layout_width="match_parent"
+             android:layout_alignParentBottom="true"
+             android:layout_height="0.1dp"
+             android:background="@color/gray_divi"/>
+      </RelativeLayout>
+      <RelativeLayout
+          style="@style/slide_menu_sec_rl">
+         <TextView
+             android:layout_marginLeft="30dp"
+             style="@style/slide_menu_text"
+             android:text="我的歌手"/>
+         <View
+             android:layout_marginLeft="30dp"
+             android:layout_width="match_parent"
+             android:layout_alignParentBottom="true"
+             android:layout_height="0.1dp"
+             android:background="@color/gray_divi"/>
+      </RelativeLayout>
+   </LinearLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>
