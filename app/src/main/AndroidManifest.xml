@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".module.activity.SettingActivity"
-            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"/>
         <activity android:name=".module.activity.ChangeThemeActivity"
-            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".module.activity.SearchActivity"
             android:screenOrientation="portrait"/>
     </application>
 

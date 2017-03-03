@@ -1,15 +1,10 @@
 package com.veer.music.module.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
 
 import com.veer.music.R;
 import com.veer.music.app.BaseActivity;
-import com.veer.music.config.Config;
-import com.veer.music.utils.StatusBarUtil;
 
 /**
  * 描述
@@ -28,10 +23,9 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void initToolBar() {
-        super.initToolBar(toolbar);
-        toolbar.setTitle("设置");
+        super.initToolBar(mToolbar);
+        mToolbar.setTitle("设置");
 
     }
-
 
 }

@@ -3,8 +3,6 @@ package com.veer.music.module.activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,7 +37,7 @@ public class ChangeThemeActivity extends BaseActivity {
             public void onClick(View v) {
                 Random random = new Random();
                 mColor = 0xff000000 | random.nextInt(0xffffff);
-                toolbar.setBackgroundColor(mColor);
+                mToolbar.setBackgroundColor(mColor);
                 PreferenceUtils.getInstance(mThis).saveParam(Config.SP_BAR_COLOR,mColor);
                 StatusBarUtil.setColorForSwipeBack(ChangeThemeActivity.this, mColor, Config.BAR_TRANSPARENT);
                 EventBus.getDefault().post(new ThemeChangeEvent(mColor));
@@ -49,8 +47,8 @@ public class ChangeThemeActivity extends BaseActivity {
 
     @Override
     protected void initToolBar() {
-        super.initToolBar(toolbar);
-        toolbar.setTitle("更换主题");
+        super.initToolBar(mToolbar);
+        mToolbar.setTitle("更换主题");
     }
 
 }

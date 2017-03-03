@@ -17,6 +17,7 @@ import com.veer.music.R;
 import com.veer.music.app.BaseActivity;
 import com.veer.music.config.Config;
 import com.veer.music.module.activity.ChangeThemeActivity;
+import com.veer.music.module.activity.SearchActivity;
 import com.veer.music.module.activity.SettingActivity;
 import com.veer.music.module.fragment.DiscoverFragment;
 import com.veer.music.module.fragment.FriendsFragment;
@@ -38,8 +39,9 @@ import java.util.List;
  */
 public class MainActivity extends BaseActivity implements View.OnClickListener{
     private DrawerLayout drawerLayout;
-    private ImageView imageView_menu;
+    private ImageView imageView_menu,imageView_search;
     private LinearLayout linearLayout_discover,linearLayout_music,linearLayout_friends;
+    private RelativeLayout relativeLayout_container;
     private ImageView imageView_discover,imageView_music,imageView_friends;
     private ViewPager viewPager;
     private TabFragmentAdapter mAdapter;
@@ -55,6 +57,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        showMusicBar();
         initViews();
         EventBus.getDefault().register(mThis);
 
@@ -68,16 +71,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         linearLayout_discover = (LinearLayout) findViewById(R.id.lin_discover);
         imageView_menu = (ImageView) findViewById(R.id.iv_menu);
+        imageView_search = (ImageView) findViewById(R.id.iv_search);
         linearLayout_music = (LinearLayout) findViewById(R.id.lin_music);
         linearLayout_friends = (LinearLayout) findViewById(R.id.lin_friends);
         imageView_discover = (ImageView) findViewById(R.id.iv_discover);
         imageView_music = (ImageView) findViewById(R.id.iv_music);
         imageView_friends = (ImageView) findViewById(R.id.iv_friends);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        relativeLayout_container = (RelativeLayout) findViewById(R.id.layout_container);
         linearLayout_discover.setOnClickListener(this);
         linearLayout_friends.setOnClickListener(this);
         linearLayout_music.setOnClickListener(this);
         imageView_menu.setOnClickListener(this);
+        imageView_search.setOnClickListener(this);
         menu_skin.setOnClickListener(this);
         textView_setting.setOnClickListener(this);
         mFragments = new ArrayList<>();
@@ -135,7 +141,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         int color = event.getColor();
         StatusBarUtil.setColorForDrawerLayout(this, drawerLayout,
                color, Config.BAR_TRANSPARENT);
-        toolbar.setBackgroundColor(color);
+        mToolbar.setBackgroundColor(color);
         menu_header.setBackgroundColor(color);
         if(mDiscoverFragment!=null)mDiscoverFragment.updateTheme(color);
         if(mFriendsFragment!=null)mFriendsFragment.updateTheme(color);
@@ -168,6 +174,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 intent = new Intent(mThis, SettingActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.iv_search:
+                intent = new Intent(mThis, SearchActivity.class);
+                startActivity(intent);
+                break;
 
             case R.id.menu_skin:
                 intent = new Intent(mThis, ChangeThemeActivity.class);
@@ -175,7 +185,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 //                int mColor = Color.GRAY;
 //                Random random = new Random();
 //                mColor = 0xff000000 | random.nextInt(0xffffff);
-//                toolbar.setBackgroundColor(mColor);
+//                mToolbar.setBackgroundColor(mColor);
 //                StatusBarUtil.setColorForDrawerLayout(this, drawerLayout, mColor, 33);
 //                menu_header.setBackgroundColor(mColor);
                 break;
@@ -184,7 +194,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         }
 
     }
-
     @Override
     protected void setStatusBar() {
         int color = PreferenceUtils.getInstance(mThis).getIntParam(Config.SP_BAR_COLOR,
@@ -195,10 +204,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void initToolBar() {
-        setSupportActionBar(toolbar);
+        setSupportActionBar(mToolbar);
         int color = PreferenceUtils.getInstance(mThis).getIntParam(Config.SP_BAR_COLOR,
                 ContextCompat.getColor(mThis,R.color.colorPrimary));
-        toolbar.setBackgroundColor(color);
+        mToolbar.setBackgroundColor(color);
     }
 
 

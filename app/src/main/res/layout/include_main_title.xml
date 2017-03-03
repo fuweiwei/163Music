@@ -11,6 +11,7 @@
         android:layout_centerVertical="true"
         android:src="@drawable/actionbar_menu"/>
     <ImageView
+        android:id="@+id/iv_search"
         android:layout_width="@dimen/title_img_size"
         android:layout_height="@dimen/title_img_size"
         android:layout_centerVertical="true"
