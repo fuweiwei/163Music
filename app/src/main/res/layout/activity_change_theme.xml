@@ -10,6 +10,5 @@
        android:layout_width="wrap_content"
        android:layout_centerInParent="true"
        android:text="更换主题"
-       android:textColor="@color/colorPrimary"
        android:layout_height="wrap_content" />
 </RelativeLayout>
