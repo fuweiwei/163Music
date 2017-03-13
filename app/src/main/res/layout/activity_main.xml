@@ -4,6 +4,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.veer.music.module.MainActivity">
     <RelativeLayout
         android:id="@+id/layout_container"
