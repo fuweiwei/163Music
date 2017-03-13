@@ -11,12 +11,10 @@ import android.view.ViewGroup;
 
 import com.veer.music.R;
 import com.veer.music.app.BaseFragment;
-import com.veer.music.config.Config;
 import com.veer.music.module.fragment.friends.GoodFriendsFragment;
 import com.veer.music.module.fragment.friends.NearbyFragment;
 import com.veer.music.module.fragment.friends.TrendsFragment;
 import com.veer.music.support.adapter.TabFragmentAdapter;
-import com.veer.music.utils.PreferenceUtils;
 import com.veer.music.widget.ChildViewPager;
 
 import java.util.ArrayList;
@@ -67,11 +65,9 @@ public class FriendsFragment extends BaseFragment {
         mAdapter = new TabFragmentAdapter(getChildFragmentManager(),mFragments,mTitles);
         viewPager.setAdapter(mAdapter);
         tabLayout.setupWithViewPager(viewPager);
-        //主题
-        int color = PreferenceUtils.getInstance(getActivity()).getIntParam(Config.SP_BAR_COLOR,
-                ContextCompat.getColor(getActivity(),R.color.colorPrimary));
-        tabLayout.setTabTextColors(ContextCompat.getColor(getActivity(),R.color.black),color);
-        tabLayout.setSelectedTabIndicatorColor(color);
+//        //主题
+        tabLayout.setTabTextColors(ContextCompat.getColor(getActivity(),R.color.black),mThemeColor);
+        tabLayout.setSelectedTabIndicatorColor(mThemeColor);
     }
     @Override
     public void updateTheme(int color) {
@@ -79,7 +75,9 @@ public class FriendsFragment extends BaseFragment {
         if(tabLayout==null)return;
         tabLayout.setTabTextColors(ContextCompat.getColor(getActivity(),R.color.black),color);
         tabLayout.setSelectedTabIndicatorColor(color);
-        mTrendsFragment.updateTheme(color);
+        if(mTrendsFragment!=null) mTrendsFragment.updateTheme(color);
+        if(mNearbyFragment!=null) mNearbyFragment.updateTheme(color);
+        if(mGoodFriendsFragment!=null) mGoodFriendsFragment.updateTheme(color);
 
     }
 }

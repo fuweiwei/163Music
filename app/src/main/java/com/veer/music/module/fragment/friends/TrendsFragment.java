@@ -3,16 +3,14 @@ package com.veer.music.module.fragment.friends;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.veer.music.R;
 import com.veer.music.app.BaseFragment;
-import com.veer.music.config.Config;
-import com.veer.music.utils.PreferenceUtils;
 import com.veer.music.utils.ToastUtils;
 
 /**
@@ -23,22 +21,22 @@ import com.veer.music.utils.ToastUtils;
 
 public class TrendsFragment extends BaseFragment {
     private SwipeRefreshLayout swipeRefreshLayout;
-
+    private TextView textView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_friends_trends,container,false);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
-        //主题
-        int color = PreferenceUtils.getInstance(getActivity()).getIntParam(Config.SP_BAR_COLOR,
-                ContextCompat.getColor(getActivity(),R.color.colorPrimary));
-        swipeRefreshLayout.setColorSchemeColors(color);
+        textView = (TextView) view.findViewById(R.id.text);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //主题
+        swipeRefreshLayout.setColorSchemeColors(mThemeColor);
+        textView.setTextColor(mThemeColor);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

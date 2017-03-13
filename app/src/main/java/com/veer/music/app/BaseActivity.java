@@ -28,6 +28,7 @@ import static com.veer.music.R.id.toolbar;
 public abstract class BaseActivity extends AppCompatActivity implements FragmentResultCallback {
     protected BaseActivity mThis = this;
     protected Toolbar mToolbar;
+    protected int mThemeColor ;
     //底部播放bar
     protected RelativeLayout mMusicBar;
     protected View mMusicView;
@@ -50,6 +51,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Fragment
         super.setContentView(layoutResID);
         mToolbar = (Toolbar) findViewById(toolbar);
         mMusicBar = (RelativeLayout) findViewById(R.id.layout_container);
+        mThemeColor = PreferenceUtils.getInstance(mThis).getIntParam(Config.SP_BAR_COLOR,
+                ContextCompat.getColor(mThis,R.color.colorPrimary));
         initToolBar();
         setStatusBar();
         initMusicBar();
@@ -58,6 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Fragment
     protected void setStatusBar() {
         int color = PreferenceUtils.getInstance(mThis).getIntParam(Config.SP_BAR_COLOR,
                 ContextCompat.getColor(mThis,R.color.colorPrimary));
+        mThemeColor = color;
         StatusBarUtil.setColorForSwipeBack(this, color,Config.BAR_TRANSPARENT);
         mToolbar.setBackgroundColor(color);
     }

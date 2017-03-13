@@ -25,4 +25,16 @@ public class RecommendFragment extends BaseFragment {
         textView = (TextView) view.findViewById(R.id.text);
         return view;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        textView.setTextColor(mThemeColor);
+    }
+
+    @Override
+    public void updateTheme(int color) {
+        super.updateTheme(color);
+        textView.setTextColor(mThemeColor);
+    }
 }

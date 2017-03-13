@@ -11,13 +11,11 @@ import android.view.ViewGroup;
 
 import com.veer.music.R;
 import com.veer.music.app.BaseFragment;
-import com.veer.music.config.Config;
 import com.veer.music.module.fragment.discover.RadioFragment;
 import com.veer.music.module.fragment.discover.RanklistFragment;
 import com.veer.music.module.fragment.discover.RecommendFragment;
 import com.veer.music.module.fragment.discover.SongFragment;
 import com.veer.music.support.adapter.TabFragmentAdapter;
-import com.veer.music.utils.PreferenceUtils;
 import com.veer.music.widget.ChildViewPager;
 
 import java.util.ArrayList;
@@ -66,10 +64,8 @@ public class DiscoverFragment extends BaseFragment {
         viewPager.setAdapter(mAdapter);
         tabLayout.setupWithViewPager(viewPager);
         //主题
-        int color = PreferenceUtils.getInstance(getActivity()).getIntParam(Config.SP_BAR_COLOR,
-                ContextCompat.getColor(getActivity(),R.color.colorPrimary));
-        tabLayout.setTabTextColors(ContextCompat.getColor(getActivity(),R.color.black),color);
-        tabLayout.setSelectedTabIndicatorColor(color);
+        tabLayout.setTabTextColors(ContextCompat.getColor(getActivity(),R.color.black),mThemeColor);
+        tabLayout.setSelectedTabIndicatorColor(mThemeColor);
     }
 
     @Override
@@ -78,6 +74,10 @@ public class DiscoverFragment extends BaseFragment {
         if(tabLayout==null)return;
         tabLayout.setTabTextColors(ContextCompat.getColor(getActivity(),R.color.black),color);
         tabLayout.setSelectedTabIndicatorColor(color);
+        if(mRecommendFragment!=null) mRecommendFragment.updateTheme(color);
+        if(mSongFragment!=null) mSongFragment.updateTheme(color);
+        if(mRadioFragment!=null) mRadioFragment.updateTheme(color);
+        if(mRanklistFragment!=null) mRanklistFragment.updateTheme(color);
 
     }
 

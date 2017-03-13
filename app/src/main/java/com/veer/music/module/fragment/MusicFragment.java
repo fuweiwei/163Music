@@ -3,7 +3,6 @@ package com.veer.music.module.fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +10,6 @@ import android.view.ViewGroup;
 
 import com.veer.music.R;
 import com.veer.music.app.BaseFragment;
-import com.veer.music.config.Config;
-import com.veer.music.utils.PreferenceUtils;
 import com.veer.music.utils.ToastUtils;
 
 /**
@@ -30,9 +27,7 @@ public class MusicFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_music,container,false);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
         //主题
-        int color = PreferenceUtils.getInstance(getActivity()).getIntParam(Config.SP_BAR_COLOR,
-                ContextCompat.getColor(getActivity(),R.color.colorPrimary));
-        swipeRefreshLayout.setColorSchemeColors(color);
+        swipeRefreshLayout.setColorSchemeColors(mThemeColor);
         return view;
     }
 
@@ -57,6 +52,6 @@ public class MusicFragment extends BaseFragment {
     @Override
     public void updateTheme(int color) {
         super.updateTheme(color);
-        swipeRefreshLayout.setColorSchemeColors(color);
+        if(swipeRefreshLayout!=null)swipeRefreshLayout.setColorSchemeColors(color);
     }
 }

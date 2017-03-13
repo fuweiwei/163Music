@@ -113,9 +113,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             }
         });
         setTabSelected(0);
-        int color = PreferenceUtils.getInstance(mThis).getIntParam(Config.SP_BAR_COLOR,
-                ContextCompat.getColor(mThis,R.color.colorPrimary));
-        menu_header.setBackgroundColor(color);
+        menu_header.setBackgroundColor(mThemeColor);
     }
 
 
