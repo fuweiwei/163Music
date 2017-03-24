@@ -141,9 +141,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                color, Config.BAR_TRANSPARENT);
         mToolbar.setBackgroundColor(color);
         menu_header.setBackgroundColor(color);
-        if(mDiscoverFragment!=null)mDiscoverFragment.updateTheme(color);
-        if(mFriendsFragment!=null)mFriendsFragment.updateTheme(color);
-        if(mMusicFragment!=null)mMusicFragment.updateTheme(color);
     }
     @Override
     protected void onDestroy() {

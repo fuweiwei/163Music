@@ -29,12 +29,12 @@ public class GoodFriendsFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        textView.setTextColor(mThemeColor);
     }
 
     @Override
-    public void updateTheme(int color) {
-        super.updateTheme(color);
+    public void onResume() {
+        super.onResume();
+        //主题
         textView.setTextColor(mThemeColor);
     }
 }

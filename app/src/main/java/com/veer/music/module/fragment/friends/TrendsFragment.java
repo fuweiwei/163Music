@@ -34,9 +34,7 @@ public class TrendsFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //主题
-        swipeRefreshLayout.setColorSchemeColors(mThemeColor);
-        textView.setTextColor(mThemeColor);
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -52,9 +50,12 @@ public class TrendsFragment extends BaseFragment {
         });
     }
 
+
     @Override
-    public void updateTheme(int color) {
-        super.updateTheme(color);
-        swipeRefreshLayout.setColorSchemeColors(color);
+    public void onResume() {
+        super.onResume();
+        //主题
+        swipeRefreshLayout.setColorSchemeColors(mThemeColor);
+        textView.setTextColor(mThemeColor);
     }
 }

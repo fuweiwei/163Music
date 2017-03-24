@@ -40,6 +40,12 @@ public class BaseFragment extends Fragment implements ThemeStatusListener {
                 ContextCompat.getColor(getActivity(),R.color.colorPrimary));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mThemeColor = PreferenceUtils.getInstance(getActivity()).getIntParam(Config.SP_BAR_COLOR,
+                ContextCompat.getColor(getActivity(),R.color.colorPrimary));
+    }
 
     @Override
     public void updateTheme(int color) {

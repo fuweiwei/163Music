@@ -65,19 +65,12 @@ public class FriendsFragment extends BaseFragment {
         mAdapter = new TabFragmentAdapter(getChildFragmentManager(),mFragments,mTitles);
         viewPager.setAdapter(mAdapter);
         tabLayout.setupWithViewPager(viewPager);
-//        //主题
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         tabLayout.setTabTextColors(ContextCompat.getColor(getActivity(),R.color.black),mThemeColor);
         tabLayout.setSelectedTabIndicatorColor(mThemeColor);
-    }
-    @Override
-    public void updateTheme(int color) {
-        super.updateTheme(color);
-        if(tabLayout==null)return;
-        tabLayout.setTabTextColors(ContextCompat.getColor(getActivity(),R.color.black),color);
-        tabLayout.setSelectedTabIndicatorColor(color);
-        if(mTrendsFragment!=null) mTrendsFragment.updateTheme(color);
-        if(mNearbyFragment!=null) mNearbyFragment.updateTheme(color);
-        if(mGoodFriendsFragment!=null) mGoodFriendsFragment.updateTheme(color);
-
     }
 }

@@ -63,22 +63,13 @@ public class DiscoverFragment extends BaseFragment {
         mAdapter = new TabFragmentAdapter(getChildFragmentManager(),mFragments,mTitles);
         viewPager.setAdapter(mAdapter);
         tabLayout.setupWithViewPager(viewPager);
-        //主题
-        tabLayout.setTabTextColors(ContextCompat.getColor(getActivity(),R.color.black),mThemeColor);
-        tabLayout.setSelectedTabIndicatorColor(mThemeColor);
     }
 
     @Override
-    public void updateTheme(int color) {
-        super.updateTheme(color);
-        if(tabLayout==null)return;
-        tabLayout.setTabTextColors(ContextCompat.getColor(getActivity(),R.color.black),color);
-        tabLayout.setSelectedTabIndicatorColor(color);
-        if(mRecommendFragment!=null) mRecommendFragment.updateTheme(color);
-        if(mSongFragment!=null) mSongFragment.updateTheme(color);
-        if(mRadioFragment!=null) mRadioFragment.updateTheme(color);
-        if(mRanklistFragment!=null) mRanklistFragment.updateTheme(color);
-
+    public void onResume() {
+        super.onResume();
+        tabLayout.setTabTextColors(ContextCompat.getColor(getActivity(),R.color.black),mThemeColor);
+        tabLayout.setSelectedTabIndicatorColor(mThemeColor);
     }
 
     @Nullable

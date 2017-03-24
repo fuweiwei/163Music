@@ -26,8 +26,6 @@ public class MusicFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_music,container,false);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
-        //主题
-        swipeRefreshLayout.setColorSchemeColors(mThemeColor);
         return view;
     }
 
@@ -49,9 +47,10 @@ public class MusicFragment extends BaseFragment {
         });
     }
 
+
     @Override
-    public void updateTheme(int color) {
-        super.updateTheme(color);
-        if(swipeRefreshLayout!=null)swipeRefreshLayout.setColorSchemeColors(color);
+    public void onResume() {
+        super.onResume();
+        if(swipeRefreshLayout!=null)swipeRefreshLayout.setColorSchemeColors(mThemeColor);
     }
 }
